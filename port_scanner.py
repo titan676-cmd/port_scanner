@@ -45,7 +45,7 @@ class PortScanner:
             except OSError:
                 service = "Unknown"
 
-            print(f"[+] port: \033[1;33m{port} is open", "service: {service}")
+            print(f"[+] port: {port} is open", "service: {service}")
 
             sock.close()
 
