@@ -38,8 +38,8 @@ class PortScanner:
     def scan_single_port(self,ip, port):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(0.3)
-        self.connect = sock.connect_ex((ip, port))
-        if self.connect == 0:
+        connect = sock.connect_ex((ip, port))
+        if connect == 0:
             try:
                 service = socket.getservbyport(port)
             except OSError:
@@ -70,3 +70,4 @@ user_input = object1.get_user_inputs()
 start = int(user_input.range1)
 end = int(user_input.range2)
 object1.Threads_scan(user_input.ip_target, start, end)
+
