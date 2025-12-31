@@ -45,7 +45,8 @@ class PortScanner:
             except OSError:
                 service = "Unknown"
 
-            print(f"[+] port: {port} is open", "service: {service}")
+            print(f"[+] port: {port} is open, service: {service}")
+        
 
             sock.close()
 
@@ -59,14 +60,13 @@ class PortScanner:
             threads.append(t)
 
         for t in threads:
-            t.join() 
-        if self.connect != 0:
-            print("[-] not found port")
+            t.join()
+        print("Scanning finished! ")
+        
 
 object1 = PortScanner()
 user_input = object1.get_user_inputs()
 
 start = int(user_input.range1)
 end = int(user_input.range2)
-
 object1.Threads_scan(user_input.ip_target, start, end)
