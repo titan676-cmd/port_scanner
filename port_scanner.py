@@ -58,7 +58,6 @@ class PortScanner:
             t.start()
             threads.append(t)
 
-        # "استنى كل الـ Threads اللي شغّالة تخلص شغلها قبل ما تكمل البرنامج"
         for t in threads:
             t.join() 
         if self.connect != 0:
@@ -69,4 +68,5 @@ user_input = object1.get_user_inputs()
 
 start = int(user_input.range1)
 end = int(user_input.range2)
+
 object1.Threads_scan(user_input.ip_target, start, end)
