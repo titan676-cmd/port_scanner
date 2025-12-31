@@ -26,11 +26,11 @@ class PortScanner:
         (user_input, argument) = object_parser.parse_args()
 
         if not user_input.ip_target:
-            object_parser.error("[-] Specify an ip target please")
+            object_parser.error("[-] Specify an ip target please, -h for help")
         elif not user_input.range1:
-            object_parser.error("[-] Specify an range1 please")
+            object_parser.error("[-] Specify an range1 please, -h for help")
         elif not user_input.range2:
-            object_parser.error("[-] Specify an range2 please")
+            object_parser.error("[-] Specify an range2 please, -h for help")
         
         return user_input
 
@@ -70,4 +70,3 @@ user_input = object1.get_user_inputs()
 start = int(user_input.range1)
 end = int(user_input.range2)
 object1.Threads_scan(user_input.ip_target, start, end)
-
