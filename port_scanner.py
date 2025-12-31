@@ -1,6 +1,7 @@
 import socket 
 import optparse
 import threading
+import time
 
 def logo_co(toll):
     print("")
@@ -20,13 +21,13 @@ class PortScanner:
     
     def get_user_inputs(self):
         object_parser = optparse.OptionParser()
-        object_parser.add_option("--ip",dest="ip_target",help="Enter ip target scan")
+        object_parser.add_option("--ip",dest="ip_target",help="Enter Target IP or Domain")
         object_parser.add_option("--range1",dest="range1",help="Enter the start port")
         object_parser.add_option("--range2",dest="range2",help="Enter the end port")
         (user_input, argument) = object_parser.parse_args()
 
         if not user_input.ip_target:
-            object_parser.error("[-] Specify an ip target please, -h for help")
+            object_parser.error("[-] Specify an Target IP please, -h for help")
         elif not user_input.range1:
             object_parser.error("[-] Specify an range1 please, -h for help")
         elif not user_input.range2:
@@ -34,6 +35,10 @@ class PortScanner:
         
         return user_input
 
+    banner = "\nStarting Port Scan..."
+    for char in banner:
+        print(char, end="", flush=True)
+        time.sleep(0.04)
 
     def scan_single_port(self,ip, port):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -45,15 +50,14 @@ class PortScanner:
             except OSError:
                 service = "Unknown"
 
-            print(f"[+] port: {port} is open, service: {service}")
+            print(f"[+] port: {port:<4} is open | service: {service}")
         
 
             sock.close()
 
     def Threads_scan(self, ip, start, end):
         threads = []
-        print("\n[+] port scanner started!")
-        print("---------------------------------------")
+        print("\n---------------------------------------")
         for port in range(start, end +1):
             t = threading.Thread(target=self.scan_single_port, args=(ip, port))
             t.start()
